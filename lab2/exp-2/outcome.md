@@ -2,7 +2,7 @@
 
 * A network toplogy was created using Router-PT as a connecting device and two PCs(end devices) connected to it.
 * A Default gateway and a unique IP address was set up for both the devices.
-* Router IP address Configuration for interfaces fa 0/0 and fa 1/0.<br> The following commands were executed in the CLI:
+* Router IP address Configuration for interfaces fa 0/0 and fa 1/0.<br>The following commands were executed in the CLI:
 
 ```
 enable
