@@ -16,7 +16,7 @@ exit
 * A simple PDU was simulated by sending an ICMP packet from PC0(source) to PC1(destination).
 
 ### Learning Outcomes
-1. A router is a networking device that forwards data packets between computer networks.
+1. A router is a networking device that forwards data packets between computer networks and works on the network layer.
 2. Creating a network topology using a router.
 3. Configuration of IP address in interfaces.
 4. Using ICMP PING responses to manually test for connectivity between network devices i.e checking if the destination is live.
