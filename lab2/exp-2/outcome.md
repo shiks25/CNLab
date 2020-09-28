@@ -16,8 +16,10 @@ exit
 * A simple PDU was simulated by sending an ICMP packet from PC0(source) to PC1(destination).
 
 ### Learning Outcomes
-1. Creating a network topology using a router.
-2. Configuration of IP address in interfaces.
-3. Using ICMP PING responses to manually test for connectivity between network devices i.e checking if the destination is live.
-4. Simulation of a simple PDU.
-5. The device sets TTL in the packet header.
+1. A router is a networking device that forwards data packets between computer networks.
+2. Creating a network topology using a router.
+3. Configuration of IP address in interfaces.
+4. Using ICMP PING responses to manually test for connectivity between network devices i.e checking if the destination is live.
+5. Simulation of a simple PDU.
+6. The device sets TTL in the packet header.
+
