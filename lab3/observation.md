@@ -5,4 +5,4 @@
 * Pinging PC1 from PC0 gave destination host unreachable.
 * Ip routes for each router was viewed using the command: `show ip route`
 * Static ip route for missing ip routes(the device networks not connected directly) was configured for [Router0](router0.png),[Router1](router1.png) and [Router2](router2.png) using the CLI command: `ip route destination_network subnet_mask next_hop_address`
-* Pinging PC1 from PC0 gave the required ping responses.
+* Pinging PC1 from PC0 gave the required ping responses as [shown here](ping_pc1_from_pc0.png).
