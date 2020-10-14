@@ -1,4 +1,4 @@
-## Configuration of default route to the Router using multiple routers and switches topology
+## Configuration of default route to the Router in a multiple routers and switches topology
 
 * A toplogy was created using three Router-PT, two Switch-PT and two PC's each connected to switch as [shown here](topology.png).
 * Default gateways and unique ip addresses were configured for each PC .
