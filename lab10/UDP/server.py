@@ -1,40 +1,32 @@
 import socket
 
-localIP = "127.0.0.1"
+serverName = '127.0.0.1'
+serverPort = 54321
 
-localPort = 20001
+print('------------------ Server ------------------') 
 
-bufferSize = 1024
+serverSocket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
 
-msgFromServer = "Hello UDP Client"
-
-bytesToSend = str.encode(msgFromServer)
-
-# Create a datagram socket
-
-UDPServerSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-
-# Bind to address and ip
-
-UDPServerSocket.bind((localIP, localPort))
+serverSocket.bind((serverName, serverPort ))
 
 print("UDP server up and listening")
 
-# Listen for incoming datagrams
+while True:
+    data,addr = serverSocket.recvfrom(1024)
+    if not data or data.decode('utf-8')=='END':
+        break
 
-while (True):
-    bytesAddressPair = UDPServerSocket.recvfrom(bufferSize)
+    filename = data.decode('utf-8')
+    print(f'Received Filename: {filename} From: {addr}')
+    try:
+        with open(filename, 'r') as f:
+            data = f.read()
+            data = bytes(data, 'utf-8')
+            f.close()
+    except:
+        data = bytes(f'File {filename} not found', 'utf-8')
 
-    message = bytesAddressPair[0]
-
-    address = bytesAddressPair[1]
-
-    clientMsg = "Message from Client:{}".format(message)
-    clientIP = "Client IP Address:{}".format(address)
-
-    print(clientMsg)
-    print(clientIP)
-
-    # Sending a reply to client
-
-    UDPServerSocket.sendto(bytesToSend, address)
+    serverSocket.sendto(data,addr)
+    print(f'Sent: {data} To: {addr}')
+    print()
+serverSocket.close()

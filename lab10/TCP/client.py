@@ -7,18 +7,22 @@ print('------------------ Client ------------------')
 
 clientSocket = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 clientSocket.connect((serverName,serverPort))
-message='Hello this is the client!'
 
 try:
     while True:
-        clientSocket.send(message.encode('utf-8'))
-        data = clientSocket.recv(1024)
-        print(str(data))
-        more = input('Send more data to the server?Y or N\n')
-        if more.lower() == 'y':
-            message = input("Enter the data:\n")
-        else:
+        filename = input('Enter file name: ')
+
+        if not filename: 
             break
+
+        clientSocket.sendall(bytes(filename, 'utf-8'))
+        print(f'Sent: {filename}')
+
+        data = clientSocket.recv(1024)
+        contents = data.decode('utf-8')
+        print(f'Received from Server:\n{contents}')
+        print()
+        
 except KeyboardInterrupt:
     print("Client Exited.")
 clientSocket.close()

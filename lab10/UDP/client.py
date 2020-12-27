@@ -1,23 +1,28 @@
 import socket
 
-msgFromClient = "Hello UDP Server"
+serverName = '127.0.0.1'
+serverPort = 54321
 
-bytesToSend = str.encode(msgFromClient)
+print('------------------ Client ------------------')
 
-serverAddressPort = ("127.0.0.1", 20001)
+UDPclientSocket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
+UDPclientSocket.connect((serverName,serverPort))
 
-bufferSize = 1024
+try:
+    while True:
+        filename = input('Enter file name to be requested: ')
 
-# Create a UDP socket at client side
+        if not filename: 
+            break
 
-UDPClientSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        UDPclientSocket.sendall(bytes(filename, 'utf-8'))
+        print(f'Sent: {filename}')
 
-# Send to server using created UDP socket
+        data = UDPclientSocket.recv(1024).decode('utf-8')
+        print(f'Received from Server:\n{data}')
+        print()
+        
+except KeyboardInterrupt:
+    print("Client Exited.")
+UDPclientSocket.close()
 
-UDPClientSocket.sendto(bytesToSend, serverAddressPort)
-
-msgFromServer = UDPClientSocket.recvfrom(bufferSize)
-
-msg = "Message from Server {}".format(msgFromServer[0])
-
-print(msg)

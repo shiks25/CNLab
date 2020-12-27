@@ -9,7 +9,7 @@ serverSocket = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 
 serverSocket.bind((serverName, serverPort ))
 
-serverSocket.listen(3)
+serverSocket.listen(1)
 
 while True:
     print("Server waiting for connection...")
@@ -19,10 +19,21 @@ while True:
         data = clientSocket.recv(1024)
         if not data or data.decode('utf-8')=='END':
             break
-        print("Received from client: %s"%data.decode("utf-8"))
+
+        filename = data.decode('utf-8')
+        print(f'Received Filename: {filename}')
         try:
-            clientSocket.send(bytes('Hi client,Data recieved by server', 'utf-8'))
-            
+            with open(filename, 'r') as f:
+                data = f.read()
+                data = bytes(data, 'utf-8')
+                f.close()
+        except:
+            data = bytes(f'File {filename} not found', 'utf-8')
+
+        try:
+            clientSocket.sendall(data)
+            print(f'Sent to Client: {data}')
+            print()
         except:
             print("Client Exited.")
     clientSocket.close()
